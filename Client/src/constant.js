@@ -1,7 +1,6 @@
-import axios from "axios";
+const productionBackendURL = import.meta.env.VITE_BACKEND_URL
+const developmentBackendURL = 'http://localhost:4000'
 
-export const baseURL = "http://localhost:4000/api";
+export const baseURL = `${productionBackendURL ?? developmentBackendURL}/api`
 
-export const instanceAxios = axios.create({
-  baseUrl: "http://localhost:4000/api",
-});
+console.log(productionBackendURL)
