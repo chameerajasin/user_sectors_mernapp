@@ -20,7 +20,7 @@ app.use(
   cors({
     origin: [
       'http://localhost:5173',
-      'https://user-sector-reactjs.onrender.com',
+      'https://user-sector-reactjs-1jgo.onrender.com',
     ],
   })
 )
