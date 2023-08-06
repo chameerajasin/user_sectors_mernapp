@@ -1,8 +1,8 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const mongoose = require("mongoose");
-require("dotenv").config();
+const express = require('express')
+const app = express()
+const cors = require('cors')
+const mongoose = require('mongoose')
+require('dotenv').config()
 
 mongoose
   .connect(process.env.DB_URI, {
@@ -10,22 +10,31 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("mongodb conneted");
+    console.log('mongodb conneted')
   })
   .catch((err) => {
-    console.log("error connecting database", err);
-  });
+    console.log('error connecting database', err)
+  })
 
-app.use(cors());
-app.use(express.json());
+app.use(
+  cors({
+    origin: [
+      'http://localhost:5173',
+      'https://user-sector-reactjs.onrender.com',
+    ],
+  })
+)
+app.use(express.json())
 
 //Import routes
-const sectorRoute = require("./routers/sector.router");
-const userRoute = require("./routers/user.router");
+const sectorRoute = require('./routers/sector.router')
+const userRoute = require('./routers/user.router')
 
-app.use("/api/sector", sectorRoute);
-app.use("/api/user", userRoute);
+app.use('/api/sector', sectorRoute)
+app.use('/api/user', userRoute)
 
-app.listen(4000, () => {
-  console.log("server is running");
-});
+const port = process.env.PORT || 4000
+
+app.listen(port, () => {
+  console.log('server is running', port)
+})
